@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+{% extends "testapp/base.html" %}
+{%block title_block%}{{ obj.title }}{%endblock%}
+{% block content %}
+
+    <h1>{{ obj.title|title }}</h1>
+    <p id="date">published on {{ obj.publish }} by {{ obj.author }}</p>
+    <p id="date">{{ obj.body|linebreaks }}</p>
+    <div class="'container" align="center">
+            <a href="/{{ obj.id }}/share/" class="btn btn-primary btn-lg" target="_blank" >Share By Email</a>
+    </div>
+
+    {% with  comments.count as comments_count %}
+        <h2>{{ comments_count }} comment{{ comments_count|pluralize }}</h2>
+    {% endwith %}
+
+    {% if comments %}
+        {% for comment in comments %}
+            <p id="o">Comment {{ forloop.counter }} by {{ comment.name|title }} on {{ comment.created }}</p>
+            <p id="ch">{{ comment.body|linebreaks }}</p><hr>
+        {% endfor %}
+
+    {% else %}
+        <p>No Commets Yet</p>
+    {% endif %}
+
+    {% if csubmit %}
+    <p id="cs">Comments Submitted successfully</p>
+    {% else %}
+    <div class="container" align="center">
+        <h2>Submit Your Comment Here</h2>
+        <form method="post">
+                {{ form.as_p }}
+                {% csrf_token %}
+                <input type="submit" class="btn btn-primary" value="Submit">
+        </form>
+
+    {% endif %}
+    </div>
+
+
+
+{% endblock %}

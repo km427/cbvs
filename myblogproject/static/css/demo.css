@@ -1,0 +1,71 @@
+.jumbotron{
+        background-color: pink;
+}
+
+.content{
+  width:60%;
+  float:left;
+    background-color: pink;
+  padding:0 0 0 30px;
+  border: 10px;
+    border-color: red;
+  height:100%;
+}
+.sidebar{
+    width: 40%;
+    float: right;
+    padding: 10px;
+    border: 30px;
+    border-color: red;
+    background-color: orange;
+    height: 100%;
+}
+h1{
+    text-align: center;
+    padding: 1px;
+}
+#date{
+    color: black;
+    font-family:Arial;
+    font-size: 14px;
+}
+#mani{
+    color: black;
+    font-family:Arial;
+    font-size: 30px;
+}
+h2{
+    color: red;
+}
+#ch{
+    color: deeppink;
+}
+#o{
+    color: green;
+}
+#he{
+    color: green;
+    margin-top: 1px;
+}
+#cs{
+    text-align: center;
+    color: red;
+}
+#pag{
+    color: red;
+}
+#a{
+    color: red;
+}
+
+#mb{
+    text-align: center;
+    color: black;
+    font-weight: bold;
+}
+#tag{
+    font-size: medium;
+    font-weight: bold;
+    color: red;
+    text-decoration-color: red;
+}

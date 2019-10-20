@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{%load blog_tags%}
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{%block title_block%}{%endblock%}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static "css/demo.css" %}">
+
+</head>
+<body>
+<div class="jumbotron">
+<h1 id="he" align="center" >Welcome to Developers Blog</h1>
+
+   <div class="container">
+           <div class="content">
+                {% block content %}
+                {% endblock %}
+            </div>
+            <div class="sidebar">
+                <h2 id="mb">Total number of post are:{%total_posts%}</h2>
+                <h3>Latest Posts are:</h3>{%show_latest_posts 4%}
+                <h3>Most commented posts are:</h3>{%most_commented_posts as comments_posts %}
+                <ul>
+                  {%for cmnt in comments_posts %}
+                  <li id="tag"><a id=tag href="{{cmnt.get_absolute_url}}">{{cmnt.title}}</a></li>
+                  {%endfor%}
+                </ul>
+
+            </div>
+</div>
+</div>
+
+
+
+</body>
+</html>

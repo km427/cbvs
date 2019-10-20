@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+{% extends "testapp/base.html" %}
+{%block title_block%}Mani blog home page{%endblock%}
+{% block content %}
+    {% if tag %}
+    <h2 align="center">Posts Tagged with {{ tag.name|title }}</h2>
+    {% endif %}
+ {% for x in post_list %}
+    <h3 id="head"><a href="{{ x.get_absolute_url }}">{{ x.title|title }}</a> </h3>
+     <p id="date">published on {{ x.publish }} by {{ x.author }}</p>
+     <p>Tags:
+     {% for tag in x.tags.all %}
+         <a href="{%url 'post_list_by_tag_name' tag.slug %}">{{tag.name}}</a>
+     {% endfor %}
+     </p>
+     <p id="date">{{ x.body|truncatechars:200|linebreaks }}</p>
+ {% endfor %}<br>
+    {%include 'testapp/pagination.html' with page=post_list %}
+
+{% endblock %}
