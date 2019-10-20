@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+{% extends "testapp/home.html" %}
+{% block body_block %}
+    <h1>Students list</h1>
+    <form method="post">
+    <table border="2">
+        <thead>
+        <th>Name</th>
+        <th>Roll num</th>
+        <th>Salary</th>
+        <th>Address</th>
+        <th>Detail Action</th>
+        <th>Update action</th>
+        <th>Delete action</th>
+        </thead>
+        {% for x in student_list %}
+            <tr>
+            <td>{{ x.name }}</td>
+            <td>{{ x.eno }}</td>
+            <td>{{ x.sal }}</td>
+            <td>{{ x.eaddr }}</td>
+            <td><a href="detail/{{ x.id }}">Detail</a></td>
+            <td><a href="/update/{{ x.id }}">Update</a> </td>
+            <td><a href="/delete/{{ x.id }}">Delete</a> </td>
+            </tr>
+        {% endfor %}
+    </table>
+    </form><br><br>
+    <a href="/create" class="btn btn-primary btn-lg">Insert</a>
+
+{% endblock %}
