@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from taggit.managers import TaggableManager
 
 # Create your models here.
@@ -14,7 +14,7 @@ class post(models.Model):
     STATUS_CHOICES=(('draft','Draft'),('published','Published'))
     title=models.CharField(max_length=250)
     slug=models.SlugField(max_length=256,unique_for_date='publish')
-    author=models.ForeignKey(User,related_name='blog_posts')
+    author=models.ForeignKey(User,on_delete=models.CASCADE,related_name='blog_posts')
     body=models.TextField()
     publish=models.DateTimeField(default=timezone.now)
     create_on=models.DateTimeField(auto_now_add=True)
@@ -36,7 +36,7 @@ class post(models.Model):
 
 
 class comments(models.Model):
-    Post=models.ForeignKey(post,related_name="comments")
+    Post=models.ForeignKey(post,on_delete=models.CASCADE,related_name="comments")
     name=models.CharField(max_length=256)
     email=models.EmailField()
     body=models.TextField()

@@ -12,6 +12,7 @@ def show_latest_posts(count=3):
     return {'latest_posts':latest_posts}
 
 from django.db.models import  Count
-@register.assignment_tag
+# ASSIGNMENT TAG NOT SUPPORTING DJANGO2.0
+@register.simple_tag()
 def most_commented_posts(count=4):
     return post.objects.annotate(most_comments=Count('comments')).order_by('most_comments')[:count]
